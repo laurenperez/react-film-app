@@ -20,11 +20,19 @@ class FilmListing extends Component {
 
   render() {
 
-    const { films } = this.props
+    const { faves, films } = this.props
 
-    let allFilms = films.map(function(film,index){
+    let allFilms = films.map(function(film, index){
       return(
-        <FilmRow title={film.title} date={film.release_date} key={film.id} url={film.poster_path}/>
+        <FilmRow
+          onFaveToggle={() => this.props.onFaveToggle(film)}
+          onDetailsClick={() => this.props.onDetailsClick(film)}
+          title={film.title}
+          date={film.release_date}
+          key={film.id}
+          url={film.poster_path}
+          isFave={faves.includes(film)}
+        />
       )
     })
 
