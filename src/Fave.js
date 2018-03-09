@@ -17,7 +17,7 @@ class Fave extends Component {
     const isFave = (this.props.isFave) ? 'remove_from_queue' : 'add_to_queue'
 
     return (
-      <div className={'film-row-fave ' + isFave}  onClick={this.handleFaveClick}>
+      <div className={'film-row-fave ' + isFave}  onClick={this.props.onFaveToggle}>
         <p className="material-icons">{isFave}</p>
       </div>
     )
