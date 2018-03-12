@@ -4,6 +4,7 @@ import FilmDetails from './FilmDetails';
 import TMDB from './TMDB';
 import './App.css';
 
+
 const films = TMDB.films
 
 class App extends Component {
@@ -35,9 +36,15 @@ class App extends Component {
 
   handleDetailsClick = (film) => {
     console.log("Fetching details for : " + film.title)
-    this.setState({
-      current: film
+    const url = `https://api.themoviedb.org/3/movie/${film.id}?api_key=${TMDB.api_key}&append_to_response=videos,images&language=en`
+
+    fetch(url).then(response => {
+      response.json().then(data => {
+        console.log(data) // take a look at what you get back!
+        this.setState({current: data})
+        })
     })
+
   }
 
 
